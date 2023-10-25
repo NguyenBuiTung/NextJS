@@ -1,0 +1,86 @@
+.section-home-services{
+    padding: 64px 0;
+    background-size: cover;
+    position: relative;
+    font-size: 17px;
+    font-weight: 300;
+}
+.section-home-services:not(.no-bg):before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(243,243,243,.95);
+}
+.section-home-services>.container{
+    position: relative;
+}
+@media only screen and (max-width: 1199.98px){
+    .section-title{
+        font-size: 28px;
+    }
+}
+#showFormBmi table{
+    border-collapse: collapse;
+}
+#showFormBmi table thead{
+    font-family: Teko, sans-serif;
+    font-size: 20px;
+    line-height: 1.25em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #29282d;
+}
+#showFormBmi table thead tr{
+    border: none;
+    border-bottom: 1px solid #e5e5e5;
+}
+#showFormBmi table thead tr th{
+    border-right: 1px dashed #a7a6a7;
+}
+#showFormBmi table th{
+    text-align: left;
+    padding: 18px 20px 18px 40px;
+}
+#showFormBmi table tbody tr td:last-child, table tbody tr th:last-child, table thead tr td:last-child, table thead tr th:last-child{
+    border-right: none;
+}
+#showFormBmi table tbody tr{
+    border: none;
+    color: #2d2d2d;
+    border-bottom: 1px dashed #a7a6a7;
+}
+#showFormBmi table td:first-child{
+    width: 35%;
+}
+#showFormBmi table td:last-child{
+    width: 65%;
+}
+#showFormBmi table tbody tr td, table tbody tr th, table thead tr td, table thead tr th{
+    border-right: 1px dashed #a7a6a7;
+}
+#showFormBmi table td{
+    text-align: left;
+    padding: 17px 20px 17px 40px;
+}
+.img_bmi img{
+    width: 100%;
+}
+@media only screen and (max-width: 768px){
+    .row-reverse{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+}
+@media only screen and (max-width: 991.98px){
+    .section-title{
+        margin-bottom: 24px;
+        font-size: 24px;
+    }
+}
+.show-form-bmi {
+    opacity: 1;
+  }

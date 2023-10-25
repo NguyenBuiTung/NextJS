@@ -1,0 +1,99 @@
+
+.blog-list .d-flex {
+  margin: 30px 0;
+}
+.blog-list .d-flex .form-control {
+  width: 30%;
+}
+.blog-list .nav-tabs {
+  border-bottom: none;
+}
+.blog-list .nav-tabs .nav-link {
+  border: none;
+  font-size: 16px;
+  text-decoration: none;
+  color: #454545;
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.blog-list .card-list .page-item {
+  padding-right: 12px;
+}
+.blog-list .card-list .page-item .page-link {
+  padding: 12px 16px;
+  border: none;
+  background-color: #f5f6f8;
+  color: #454545;
+  min-height: 50px;
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.blog-list .card-list .page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #a50000;
+}
+.blog-list .card-list .page-item:nth-child(1) {
+  padding-right: 0;
+}
+.blog-list .card-list .page-item:nth-child(2) {
+  padding-right: 0;
+}
+.blog-list .card-list .page-item:nth-last-child(-n + 3) {
+  padding: 0 !important;
+}
+.card-list .item .category {
+  color: #7d8ba4;
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.card-list .item .date {
+  font-family: "Roboto Condensed";
+  color: #7d8ba4;
+  margin-bottom: 16px;
+}
+@media (max-width: 767.98px) {
+  .breadcrumb-bg {
+    /* height: 350px; */
+    margin-bottom: 32px;
+  }
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (max-width: 991.98px) {
+  .breadcrumb-bg .title-bg {
+    font-size: 84px;
+    bottom: -24px;
+  }
+}
+@media (max-width: 767.98px) {
+  .breadcrumb-bg .title-bg {
+    font-size: 48px;
+    bottom: 0;
+  }
+}
+@media (max-width: 991.98px) {
+  .breadcrumb-bg .title {
+    bottom: 64px;
+    font-size: 32px;
+  }
+}
+@media (max-width: 767.98px) {
+  .breadcrumb-bg .title {
+    bottom: 48px;
+  }
+}

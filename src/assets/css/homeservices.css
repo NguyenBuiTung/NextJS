@@ -1,0 +1,632 @@
+.section-home-services {
+  padding: 64px 0;
+  background-size: cover;
+  position: relative;
+  background-image: url("https://citigym.com.vn/themes/citigym/images/banners/service-banner.jpg");
+  margin-bottom: 0;
+}
+
+@media  (max-width: 991.98px) {
+  .section-home-services {
+    padding: 32px 0;
+  }
+}
+.section-home-services:not(.no-bg):before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(243, 243, 243, 0.95);
+}
+
+.section-home-services > .container,
+.section-home-services > .container-fluid {
+  position: relative;
+}
+
+.section-home-services .services-wrapper,
+.section-service-services .services-wrapper {
+  position: relative;
+}
+
+@media  (min-width: 1200px) {
+  .section-home-services .services-wrapper > .row,
+  .section-service-services .services-wrapper > .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+@media  (max-width: 768px) {
+  .sm-pd {
+    padding: 5px 5px !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .section-home-services .services-wrapper > .row > [class*="col-"],
+  .section-service-services .services-wrapper > .row > [class*="col-"] {
+    width: 50%;
+    padding: 0;
+  }
+
+  .section-home-services
+    .services-wrapper
+    > .row
+    > [class*="col-"]
+    > .item
+    .title,
+  .section-service-services
+    .services-wrapper
+    > .row
+    > [class*="col-"]
+    > .item
+    .title {
+    text-align: center;
+  }
+}
+
+.section-home-services .services-wrapper .item,
+.section-service-services .services-wrapper .item {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-home-services .services-wrapper .item .item-img,
+.section-service-services .services-wrapper .item .item-img {
+  position: relative;
+}
+
+.section-home-services .services-wrapper .item .item-img:before,
+.section-service-services .services-wrapper .item .item-img:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 100%;
+}
+
+.section-home-services .services-wrapper .item .item-img:after,
+.section-service-services .services-wrapper .item .item-img:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.3) 0,
+    rgba(0, 0, 0, 0.2) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.3) 0,
+    rgba(0, 0, 0, 0.2) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.section-home-services .services-wrapper .item .item-img > img,
+.section-service-services .services-wrapper .item .item-img > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.section-home-services .services-wrapper .item .content-overlay,
+.section-service-services .services-wrapper .item .content-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.section-home-services .services-wrapper .item .content-overlay .content .title,
+.section-service-services
+  .services-wrapper
+  .item
+  .content-overlay
+  .content
+  .title {
+  font-size: 32px;
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 28px;
+  text-align: center
+  ;
+}
+
+@media (max-width: 991.98px) {
+  .section-home-services
+    .services-wrapper
+    .item
+    .content-overlay
+    .content
+    .title,
+  .section-service-services
+    .services-wrapper
+    .item
+    .content-overlay
+    .content
+    .title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .section-home-services
+    .services-wrapper
+    .item
+    .content-overlay
+    .content
+    .title,
+  .section-service-services
+    .services-wrapper
+    .item
+    .content-overlay
+    .content
+    .title {
+    font-size: 20px;
+  }
+}
+
+.section-home-services .services-wrapper .item .stripe-vector-1,
+.section-home-services .services-wrapper .item .stripe-vector-2,
+.section-service-services .services-wrapper .item .stripe-vector-1,
+.section-service-services .services-wrapper .item .stripe-vector-2 {
+  position: absolute;
+  opacity: 0.1;
+  transition: all 0.3s ease;
+  z-index: 0;
+}
+
+.section-home-services .services-wrapper .item .stripe-vector-1,
+.section-service-services .services-wrapper .item .stripe-vector-1 {
+  top: 0;
+  left: 0;
+  transform: translate(-100%, -100%);
+}
+
+.section-home-services .services-wrapper .item .stripe-vector-2,
+.section-service-services .services-wrapper .item .stripe-vector-2 {
+  bottom: 0;
+  right: 0;
+  transform: translate(100%, 100%);
+}
+
+.section-home-services .services-wrapper .item:hover .item-img:after,
+.section-service-services .services-wrapper .item:hover .item-img:after {
+  background: rgba(165, 0, 0, 0.6);
+}
+
+.section-home-services .services-wrapper .item:hover .stripe-vector-1,
+.section-home-services .services-wrapper .item:hover .stripe-vector-2,
+.section-service-services .services-wrapper .item:hover .stripe-vector-1,
+.section-service-services .services-wrapper .item:hover .stripe-vector-2 {
+  transform: translate(0, 0);
+}
+
+/* @media (min-width: 768px) {
+  .section-home-services .services-wrapper .item,
+  .section-service-services .services-wrapper .item {
+    margin-bottom: 30px;
+  }
+} */
+.section-title {
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #454545;
+  margin-bottom: 32px;
+}
+
+@media  (max-width: 1199.98px) {
+  .section-title {
+    font-size: 28px;
+  }
+}
+
+@media  (max-width: 991.98px) {
+  .section-title {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .section-title {
+    margin-bottom: 24px;
+  }
+}
+
+.section-title.light {
+  color: #fff;
+}
+
+.section-title.light + .sub-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 24px;
+}
+
+.section-title + .sub-description {
+  transform: translateY(-16px);
+}
+
+.sub-description {
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 32px;
+}
+
+@media  (max-width: 991.98px) {
+  .sub-description {
+    margin-bottom: 0;
+  }
+}
+.section-service-services {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-service-services .bg-overlay-text {
+  position: absolute;
+}
+
+.section-service-services .bg-overlay-text:nth-child(1) {
+  top: 0;
+  left: 0;
+  transform: translateY(calc(-50% - 30px));
+}
+
+.section-service-services .bg-overlay-text:nth-child(2) {
+  bottom: 0;
+  right: 0;
+  transform: translateY(calc(50% + 30px));
+}
+
+.section-service-detail-slider {
+  position: relative;
+}
+
+.section-service-detail-slider .slider-gallery .item {
+  position: relative;
+}
+
+@media  (min-width: 3000px) {
+  .section-service-detail-slider .slider-gallery .item .item-img {
+    position: relative;
+  }
+
+  .section-service-detail-slider .slider-gallery .item .item-img:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: 37.5%;
+  }
+
+  .section-service-detail-slider .slider-gallery .item .item-img > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.section-service-detail-slider .slider-gallery .item .item-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+}
+
+.section-service-detail-slider .content-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 64px;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.section-service-detail-slider .content-overlay .content .title {
+  font-size: 32px;
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  font-size: 28px;
+}
+
+@media (max-width: 991.98px) {
+  .section-service-detail-slider .content-overlay .content .title {
+    font-size: 24px;
+  }
+}
+
+.section-service-detail-feature .item {
+  position: relative;
+}
+
+.section-service-detail-feature .item .item-img {
+  overflow: hidden;
+  position: relative;
+}
+
+.section-service-detail-feature .item .item-img:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 133.33333%;
+}
+
+.section-service-detail-feature .item .item-img > .content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.section-service-detail-feature .item .item-img img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  transition: all 0.3s ease;
+}
+
+.section-service-detail-feature .item .item-img:not(.no-img):after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.section-service-detail-feature .item .content-overlay {
+  padding: 24px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  z-index: 1;
+}
+
+.section-service-detail-feature .item .content-overlay .content {
+  text-align: center;
+  color: #fff;
+}
+
+.section-service-detail-feature .item .content-overlay .content .icon > i {
+  font-size: 132px;
+}
+
+.section-service-detail-feature
+  .item
+  .content-overlay
+  .content
+  .icon
+  > [class*="customicon-"] {
+  display: inline-flex;
+}
+
+.section-service-detail-feature
+  .item
+  .content-overlay
+  .content
+  .icon
+  > [class*="customicon-"]:before {
+  line-height: 132px;
+}
+
+.section-service-detail-feature .item .content-overlay .content .title {
+  font-size: 16px;
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-service-detail-feature .item:hover .item-img img {
+  transform: scale(1.1);
+}
+
+.section-service-detail-feature-1 {
+  position: relative;
+  padding: 64px 0;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  position: relative;
+}
+
+@media  (max-width: 991.98px) {
+  .section-service-detail-feature-1 {
+    padding: 32px 0;
+  }
+}
+
+.section-service-detail-feature-1:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.section-service-detail-feature-1 > .container,
+.section-service-detail-feature-1 > .container-fluid {
+  position: relative;
+}
+
+.section-service-detail-feature-1 .item {
+  position: relative;
+}
+
+.section-service-detail-feature-1 .item .content-overlay .content {
+  text-align: center;
+  color: #454545;
+}
+
+.section-service-detail-feature-1 .item .content-overlay .content .icon > i {
+  font-size: 132px;
+}
+
+.section-service-detail-feature-1
+  .item
+  .content-overlay
+  .content
+  .icon
+  > [class*="customicon-"] {
+  display: inline-flex;
+}
+
+.section-service-detail-feature-1
+  .item
+  .content-overlay
+  .content
+  .icon
+  > [class*="customicon-"]:before {
+  line-height: 132px;
+}
+
+.section-service-detail-feature-1 .item .content-overlay .content .title {
+  font-size: 16px;
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.section-service-detail-info {
+  overflow: hidden;
+}
+
+.section-service-detail-info .content-text {
+  position: relative;
+  z-index: 2;
+}
+
+.section-service-detail-info .content-text .feature-title {
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  -webkit-text-fill-color: transparent;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat:repeat;
+ background-clip: text;
+  font-family: "Roboto Condensed", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 128px;
+  font-size: 90px;
+  line-height: 116px;
+  margin-bottom: 32px;
+}
+
+@media  (max-width: 1199.98px) {
+  .section-service-detail-info .content-text .feature-title {
+    line-height: unset;
+    font-size: 40px;
+  }
+}
+
+@media  (max-width: 991.98px) {
+  .section-service-detail-info .content-text .feature-title {
+    font-size: 32px;
+  }
+}
+
+@media  (max-width: 767.98px) {
+  .section-service-detail-info .content-text .feature-title {
+    font-size: 28px;
+  }
+}
+
+.section-service-detail-info .content-bg img {
+  width: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+@media  (max-width: 1440px) {
+  .section-service-detail-info .content-bg img {
+    width: 700px;
+  }
+}
+
+@media  (max-width: 767.98px) {
+  .section-service-detail-info .content-bg img {
+    width: 100%;
+  }
+}
+
+.section-service-detail-info
+  .content-bg.stripe-section
+  > [class*="stripe-vector"] {
+  position: absolute;
+  opacity: 0.6;
+  z-index: 0;
+}
+
+.section-service-detail-info .content-bg.stripe-section .stripe-vector-1 {
+  top: 0;
+  left: 0;
+  transform: translateX(-25%);
+}
+
+.section-service-detail-info .content-bg.stripe-section .stripe-vector-2 {
+  bottom: 0;
+  right: 0;
+  transform: translateX(50%);
+}

@@ -1,0 +1,15 @@
+.section-home-before-after {
+  overflow: hidden;
+}
+.section-home-before-after .slick-next {
+  right: -50px;
+}
+.fix-height img {
+  height: 300px !important;
+}
+.fix-height{
+    height: 300px !important;
+}
+.section-home-before-after .slick-slide{
+    height: 300px !important;
+}

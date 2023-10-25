@@ -1,0 +1,24 @@
+.ant-notification .ant-notification-notice{
+    padding: 0 !important;
+    overflow: unset !important;
+    background: none !important;
+}
+.ant-notification .ant-notification-notice .ant-notification-notice-close{
+    color: #fff !important;
+}
+.ant-notification .ant-notification-notice-wrapper .ant-notification-notice-message{
+    margin-bottom: 0;
+}
+.ant-notification{
+    top:350px !important
+}
+@media only screen and (max-width: 600px) {
+    .ant-notification .ant-notification-notice{
+        width: 150px;
+    }
+}
+
+ 
+  
+
+  
