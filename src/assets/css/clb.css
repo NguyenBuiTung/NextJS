@@ -1,8 +1,8 @@
-.main-wrapper-clb{
-    background-image: url(https://citigym.com.vn/themes/citigym/images/background/body-bg.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: bottom;
+.main-wrapper-clb {
+  background-image: url(https://citigym.com.vn/themes/citigym/images/background/body-bg.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: bottom;
 }
 .main-breadcrumb {
   position: relative;
@@ -88,9 +88,9 @@
   margin-bottom: 32px;
   position: relative;
 }
-.card-list .item:hover .content{
-    transform: scale(1.1);
-    transition: all 0.3s ease;
+.card-list .item:hover .content {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 .card-list .item .stripe-vector {
   position: absolute;
@@ -148,47 +148,88 @@
 .icon-list:not(:last-child) {
   margin-bottom: 12px;
 }
-.icon-list>svg{
-    margin-right: 6px;
+.icon-list > svg {
+  margin-right: 6px;
 }
-.section-sign-up-form{
-    overflow: hidden;
-    padding: 64px 0;
-    background-size: cover;
-    background-position: center;
-    position: relative;
+.section-sign-up-form {
+  overflow: hidden;
+  padding: 64px 0;
+  background-size: cover;
+  background-position: center;
+  position: relative;
 }
-.section-sign-up-form:before{
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: -webkit-linear-gradient(top,rgba(0,0,0,.25) 0,rgba(0,0,0,.45) 75%,rgba(0,0,0,.75) 100%);
-    background: linear-gradient(to bottom,rgba(0,0,0,.25) 0,rgba(0,0,0,.45) 75%,rgba(0,0,0,.75) 100%);
+.section-sign-up-form:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0.25) 0,
+    rgba(0, 0, 0, 0.45) 75%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25) 0,
+    rgba(0, 0, 0, 0.45) 75%,
+    rgba(0, 0, 0, 0.75) 100%
+  );
 }
-.section-sign-up-form.stripe-section .stripe-vector-1{
-    top: 0;
-    left: 0;
+.section-sign-up-form.stripe-section .stripe-vector-1 {
+  top: 0;
+  left: 0;
 }
-.section-sign-up-form.stripe-section>[class*=stripe-vector]{
-    position: absolute;
-    opacity: .2;
-    z-index: 0;
+.section-sign-up-form.stripe-section > [class*="stripe-vector"] {
+  position: absolute;
+  opacity: 0.2;
+  z-index: 0;
 }
-.section-sign-up-form.stripe-section .stripe-vector-2{
-    bottom: 0;
-    right: 0;
+.section-sign-up-form.stripe-section .stripe-vector-2 {
+  bottom: 0;
+  right: 0;
 }
-.section-sign-up-form.stripe-section>[class*=stripe-vector]{
-    position: absolute;
-    opacity: .2;
-    z-index: 0;
+.section-sign-up-form.stripe-section > [class*="stripe-vector"] {
+  position: absolute;
+  opacity: 0.2;
+  z-index: 0;
 }
-/* .section-title.light{
-    color: #fff;
-} */
+.section-club-list .card-list .page-item {
+  padding-right: 12px;
+}
+.section-club-list .card-list .page-item .page-link {
+  padding: 12px 16px;
+  border: none;
+  background-color: #f5f6f8;
+  color: #454545;
+  min-height: 50px;
+  font-family: "Roboto Condensed";
+  font-weight: 700;
+  text-transform: uppercase;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.section-club-list .card-list .page-item.active .page-link {
+  z-index: 1;
+  color: #fff;
+  background-color: #a50000;
+}
+.section-club-list .card-list .page-item:nth-child(1) {
+  padding-right: 0;
+}
+.section-club-list .card-list .page-item:nth-child(2) {
+  padding-right: 0;
+}
+.section-club-list .card-list .page-item:nth-last-child(-n + 3) {
+  padding: 0 !important;
+}
 @media (max-width: 1199.98px) {
   .card-list .item .item-body .title {
     font-size: 28px;
