@@ -29,7 +29,7 @@ function HomeBmi() {
                   src="https://citigym.com.vn/themes/citigym/images/transparent-bg/bmi-text.png"
                 />
               </div>
-              <div className="col-lg-6 bmi-content">
+              <div className="col-lg-6 bmi-content z-3">
                 <div className="section-title">
                   Tính BMI (Chỉ số khối cơ thể)
                 </div>

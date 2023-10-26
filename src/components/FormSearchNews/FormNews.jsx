@@ -1,20 +1,38 @@
 "use client";
+import apiClient from "@/utils/apiClientConfig";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Form, Pagination, Tab, Tabs } from "react-bootstrap";
+import ItemCard from "./ItemCard";
 function FormNews() {
-    const [key, setKey] = useState("all");
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 7; // Tổng số trang
-  
-    const handlePageChange = (page) => {
-      setCurrentPage(page);
-      console.log(page);
-      // Xử lý khi người dùng thay đổi trang
-      // Thay đổi currentPage và lấy dữ liệu mới từ trang đó
+  const [data, setData] = useState([]); // Dữ liệu lấy về từ API
+  const [key, setKey] = useState("GP01");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(); // Sử dụng state để lưu tổng số trang
+  const itemsPerPage = 6;
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const reponse = await apiClient.get(
+          `/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=${key}&soTrang=${currentPage}&soPhanTuTrenTrang=${itemsPerPage}`
+        );
+        setData(reponse.data.content);
+        setTotalPages(
+          Math.ceil(reponse.data.content.totalCount / itemsPerPage)
+        ); // Tính toán tổng số trang dựa trên tổng số phần tử
+      } catch (error) {
+        console.log(error);
+      }
     };
+    fetchData();
+  }, [currentPage, key]);
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [key]);
   return (
     <>
       <Form className="d-flex">
@@ -34,44 +52,17 @@ function FormNews() {
         onSelect={(k) => setKey(k)}
         className="mb-3"
       >
-        <Tab eventKey="all" title="TẤT CẢ">
+        <Tab eventKey="GP01" title="TẤT CẢ">
           <div className="card-list list-view-mobile">
             <div className="row">
-              <div className="col-lg-4 col-md-6">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Tập luyện tại hệ thống CITIGYM"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
                   </div>
-                  <Link
-                    className="d-block item-img ratio-4-3"
-                    href={"/tin-tuc/lich-tap-gym-7-ngay-tai-nha-tang-co-bap-cho-nguoi-ban-ron"}
-                  >
-                    <img
-                      src="https://citigym.com.vn/storage/uploads/hoanghh-seo/lich-tap-gym-7-ngay-tai-nha-tang-co-bap-cho-nguoi-ban-ron-1-1.jpg"
-                      className="content"
-                      alt="LỊCH TẬP GYM 7 NGÀY TẠI NHÀ TĂNG CƠ BẮP CHO NGƯỜI BẬN RỘN"
-                    />
-                  </Link>
-                  <div className="item-body">
-                    <div className="category">Tập luyện</div>
-                    <Link
-                      href={"/tin-tuc/lich-tap-gym-7-ngay-tai-nha-tang-co-bap-cho-nguoi-ban-ron"}
-                      className="title"
-                    >
-                      LỊCH TẬP GYM 7 NGÀY TẠI NHÀ TĂNG CƠ BẮP CHO NGƯỜI ...
-                    </Link>
-                    <div className="date">19-10-2023</div>
-                    <div className="description">
-                      Cân đối thời gian tập luyện và công việc hằng ngày rất khó
-                      với những người bận rộn. Để có một kết quả tốt đòi hỏi bạn
-                      phải kiên trì và có lộ trình phù hợp. Bài ...
-                    </div>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
+
               <Pagination style={{ justifyContent: "center" }}>
                 <Pagination.First onClick={() => handlePageChange(1)} />
                 <Pagination.Prev
@@ -146,32 +137,769 @@ function FormNews() {
             </div>
           </div>
         </Tab>
-        <Tab.Content eventKey="blog" title="BLOG">
-          Tab content for Profile
+        <Tab.Content eventKey="GP11" title="BLOG">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab.Content>
-        <Tab eventKey="voucher" title="KHUYẾN MÃI">
-          Tab content for Contact
+        <Tab eventKey="GP12" title="KHUYẾN MÃI">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="losingweight" title="GIẢM CÂN">
-          Tab content for Contact
+        <Tab eventKey="GP13" title="GIẢM CÂN">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="memberstory" title="CÂU CHUYỆN HỘI VIÊN">
-          Tab content for Contact
+        <Tab eventKey="GP14" title="CÂU CHUYỆN HỘI VIÊN">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="practice" title="TẬP LUYỆN">
-          Tab content for Contact
+        <Tab eventKey="GP15" title="TẬP LUYỆN">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="nutrition" title="CHẾ ĐỘ DINH DƯỠNG">
-          Tab content for Contact
+        <Tab eventKey="GP16" title="CHẾ ĐỘ DINH DƯỠNG">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="event" title="SỰ KIỆN">
-          Tab content for Contact
+        <Tab eventKey="GP17" title="SỰ KIỆN">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="news" title="TIN TỨC">
-          Tab content for Contact
+        <Tab eventKey="GP09" title="TIN TỨC">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
-        <Tab eventKey="citygym" title="CITYGYM">
-          Tab content for Contact
+        <Tab eventKey="GP10" title="CITYGYM">
+          <div className="card-list list-view-mobile">
+            <div className="row">
+              {data?.items?.map((item, index) => {
+                return (
+                  <div key={index} className="col-lg-4 col-md-6">
+                    <ItemCard item={item} />
+                  </div>
+                );
+              })}
+
+              <Pagination style={{ justifyContent: "center" }}>
+                <Pagination.First onClick={() => handlePageChange(1)} />
+                <Pagination.Prev
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                />
+
+                {currentPage > 3 && (
+                  <>
+                    <Pagination.Item onClick={() => handlePageChange(1)}>
+                      1
+                    </Pagination.Item>
+                    <Pagination.Ellipsis />
+                  </>
+                )}
+
+                {currentPage === 1 ? (
+                  <>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    {totalPages > 1 && (
+                      <Pagination.Item onClick={() => handlePageChange(2)}>
+                        2
+                      </Pagination.Item>
+                    )}
+                  </>
+                ) : currentPage === totalPages ? (
+                  <>
+                    {totalPages > 1 && (
+                      <Pagination.Item
+                        onClick={() => handlePageChange(totalPages - 1)}
+                      >
+                        {totalPages - 1}
+                      </Pagination.Item>
+                    )}
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                  </>
+                ) : (
+                  <>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage - 1)}
+                    >
+                      {currentPage - 1}
+                    </Pagination.Item>
+                    <Pagination.Item active>{currentPage}</Pagination.Item>
+                    <Pagination.Item
+                      onClick={() => handlePageChange(currentPage + 1)}
+                    >
+                      {currentPage + 1}
+                    </Pagination.Item>
+                  </>
+                )}
+                {currentPage < totalPages - 2 && (
+                  <>
+                    <Pagination.Ellipsis />
+                    <Pagination.Item
+                      onClick={() => handlePageChange(totalPages)}
+                    >
+                      {totalPages}
+                    </Pagination.Item>
+                  </>
+                )}
+
+                <Pagination.Next
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                />
+                <Pagination.Last
+                  onClick={() => handlePageChange(totalPages)}
+                  disabled={currentPage === totalPages}
+                />
+              </Pagination>
+            </div>
+          </div>
         </Tab>
       </Tabs>
     </>

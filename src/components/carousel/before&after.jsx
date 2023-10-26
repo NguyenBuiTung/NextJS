@@ -39,7 +39,6 @@ function HomeBeforeAfter() {
         const response = await apiClient.get(
           "/QuanLyPhim/LayDanhSachPhim?maNhom=GP01"
         );
-        console.log(response.data.content);
         setBefore(response.data.content);
       } catch (error) {
         // Xử lý lỗi ở đây

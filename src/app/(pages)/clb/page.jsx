@@ -1,8 +1,11 @@
+import getData from "@/api/getData";
 import ContactForm from "@/components/contactForm/ContactForm";
 import { faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
 
-function page() {
+async function page() {
+  const data =await getData()
   return (
     <div className="main-wrapper-clb">
       <a href>
@@ -70,7 +73,9 @@ function page() {
           </div>
           <div className="card-list">
             <div className="row">
-            <div className="col-md-4">
+            {data.content.map((item,index)=>{
+              return(
+                <div key={index} className="col-md-4">
                 <div className="item">
                   <div className="stripe-vector">
                     <img
@@ -78,23 +83,23 @@ function page() {
                       src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
                     />
                   </div>
-                  <a
+                  <Link
                     href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
                     className="item-img ratio-4-3 d-block"
                   >
                     <img
                       alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
+                      src={item.hinhAnh}
                       className="content"
                     />
-                  </a>
+                  </Link>
                   <div className="item-body">
-                    <a
+                    <Link
                       href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
                       className="title"
                     >
                       Citigym Thành Thái
-                    </a>
+                    </Link>
                     <div className="icon-list">
                     <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
                       Phường 12, Quận 10, Thành phố Hồ Chí Minh
@@ -106,258 +111,10 @@ function page() {
                   </div>
                 </div>
               </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            <div className="col-md-4">
-                <div className="item">
-                  <div className="stripe-vector">
-                    <img
-                      alt="Hình đăng ký tham quan CLB"
-                      src="https://citigym.com.vn/themes/citigym/images/svg/stripe-1-grey.svg"
-                    />
-                  </div>
-                  <a
-                    href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                    className="item-img ratio-4-3 d-block"
-                  >
-                    <img
-                      alt
-                      src="https://citigym.com.vn/storage/uploads/screenshot-2020-10-14-180443-375x440.jpg"
-                      className="content"
-                    />
-                  </a>
-                  <div className="item-body">
-                    <a
-                      href="https://citigym.com.vn/clb/phong-tap-gym-quan-10"
-                      className="title"
-                    >
-                      Citigym Thành Thái
-                    </a>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faLocationDot} /> 52 Thành Thái,
-                      Phường 12, Quận 10, Thành phố Hồ Chí Minh
-                    </div>
-                    <div className="icon-list">
-                    <FontAwesomeIcon icon={faPhone} />
-                      <a href="tel:1900633638">1900633638</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              )
+            })}
+            
+            
            
               
             </div>
